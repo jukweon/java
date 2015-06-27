@@ -7,8 +7,12 @@ public class Snowman {
 	 * @param known What the player has already learned (letters or underscores).
 	 */
 	public static boolean complete(char[] known) {
-		// TODO You have to write this
-		return false;
+		for (int i = 0; i < known.length; i++) {
+			if (known[i] == '_') {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -65,7 +69,16 @@ public class Snowman {
 	 * @param word The correct word.
 	 */
 	public static boolean found(char letter, String word, char[] known) {
-		// TODO You have to write this
+		int success = 0;
+		for(int i = 0; i < word.length(); i++) {
+			if ((letter != known[i]) && (letter == word.charAt(i))) {
+				known[i] = letter;
+				success++;
+			}
+		}
+		if (success != 0) {
+			return true;
+		}
 		return false;
 	}
 
@@ -92,8 +105,8 @@ public class Snowman {
 
 	/** Returns a random word from dictionary. */
 	public static String randomWord(String[] dictionary) {
-		// TODO You have to write this
-		return null;
+		int random = ((int) (Math.random() * dictionary.length));
+		return dictionary[random];
 	}
 
 	/** Reads and returns the dictionary. */
